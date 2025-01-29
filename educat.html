@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>About & Story - NEXTAG</title>
+  <style>
+    /* General Reset */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: black;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Header Section */
+    .header {
+      background: linear-gradient(90deg, yellow, black);
+      color: black;
+      text-align: center;
+      padding: 50px 10px;
+      position: relative;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      color: yellow;
+      text-transform: uppercase;
+      animation: textGlow 1.5s infinite alternate;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    /* About Section */
+    .about {
+      padding: 50px 20px;
+      background: black;
+      color: white;
+      text-align: center;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      color:#FFD700;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Story Section */
+    .story {
+      background-color: #222;
+      padding: 50px 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .story h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #FFD700;
+    }
+
+    .timeline {
+      position: relative;
+      margin: 0 auto;
+      padding: 20px 0;
+      width: 80%;
+      max-width: 1000px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 6px;
+      height: 100%;
+      background: #FFD700;
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin: 20px 0;
+    }
+
+    .timeline-item:nth-child(even) {
+      text-align: left;
+    }
+
+    .timeline-item:nth-child(odd) {
+      text-align: right;
+    }
+
+    .timeline-content {
+      display: inline-block;
+      padding: 20px;
+      background: black;
+      border: 2px solid#FFD700;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-content {
+      transform: scale(1.05);
+    }
+
+    /* Educational Content Section */
+    .education {
+      padding: 50px 20px;
+      background: linear-gradient(90deg, #FFD700,yellow);
+      color: black;
+      text-align: center;
+    }
+
+    .education h2 {
+      font-size: 2.5rem;
+      color: black;
+      margin-bottom: 20px;
+    }
+
+    .education-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .education-box {
+      width: 300px;
+      background: black;
+      color: #fcfcfc;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .education-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 255, 0, 0.7);
+    }
+
+    .education-box h3 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    
+    /* Animations */
+    @keyframes textGlow {
+      from {
+        text-shadow: 0 0 5px yellow, 0 0 10px yellow;
+      }
+      to {
+        text-shadow: 0 0 15px yellow, 0 0 30px yellow;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+/* Navbar Styles */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease;
+  color: #fff;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.1);
+}
+
+.nav-links {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #FFD700;
+  background-color: #000000;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #FFD700;
+  transform: scale(1.1);
+}
+
+/* Header Text Colors */
+#hdd {
+  color: #fff;
+}
+
+.span {
+  color: #ffcc33;
+}
+/* LIKE-ICON */
+.like-button {
+  position: relative;
+  font-size: 25px;
+  padding-right: 8px;
+  color: #ccc;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.like-button.liked {
+  color: #ff4757;
+  transform: scale(1.2);
+}
+
+/* Sparkle Animation */
+.sparkle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ffdd59;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkle-animation 0.6s ease forwards;
+}
+
+@keyframes sparkle-animation {
+  0% {
+      transform: scale(0.5);
+      opacity: 1;
+  }
+  50% {
+      transform: scale(1.5);
+      opacity: 1;
+  }
+  100% {
+      transform: scale(0);
+      opacity: 0;
+  }
+}
+
+/* Bubble Notification Styles */
+.bubble-notification {
+  position: absolute;
+  top: 60px; /* Adjust this value to position the bubble below the button */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff4757;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: bubble-down 0.6s ease forwards, fade-out 1.6s ease forwards 1.6s;
+}
+
+@keyframes bubble-down {
+  0% {
+      opacity: 0;
+      transform: translate(-50%, -20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+/* CART */
+.cart {
+  position: relative;
+}
+
+.cart-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+}
+
+/* Notification Styles */
+.notification {
+  position: fixed;
+  top: 10%;
+  right: 10px;
+  background: #28a745;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease-in-out;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  z-index: 999;
+}
+/* Footer Section */
+.footer {
+  background-color: #000;
+  color: #fff;
+  padding: 2rem;
+}
+
+.footer h3,
+.footer h5,
+.footer h6 {
+  color: #fff;
+}
+
+.footer p,
+.footer ul li a {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s ease; /* Smooth transition for links */
+}
+
+/* Hover effect for links */
+.footer ul li a:hover {
+  color: #ffd700; /* Gold color on hover */
+}
+
+/* Social Media Icons */
+.footer .social-icons a {
+  font-size: 20px;
+  color: #bbb; /* Default color for social media icons */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and scale */
+  text-decoration: none;
+  margin-right: 15px; /* Space between icons */
+}
+
+.footer .social-icons a:hover {
+  color: #ffd700; /* Gold color on hover */
+  transform: scale(1.2); /* Slightly enlarge the icons */
+}
+
+/* Font Awesome Icon Sizes */
+.footer .social-icons i {
+  font-size: 20px; /* Set the size of the icons */
+}
+
+/* Button styles */
+.footer .btn-warning {
+  background-color: #ffd700;
+  border: none;
+  color: #000;
+  transition: background-color 0.3s ease;
+}
+
+.footer .btn-warning:hover {
+  background-color: #ffcc33;
+}
+
+.footer .btn-outline-warning {
+  border: 1px solid #ffd700;
+  color: #ffd700;
+  transition: all 0.3s ease;
+}
+
+.footer .btn-outline-warning:hover {
+  background-color: #ffd700;
+  color: #000;
+}
+
+/* Ensure the layout is centered and properly spaced */
+.footer .row {
+  display: flex;
+  justify-content: center;
+  gap: 3rem; /* Add gap between columns */
+}
+
+.footer .col-md-3 {
+  flex: 1;
+  text-align: center;
+}
+
+.footer .col-md-4 {
+  flex: 2;
+  text-align: center;
+}
+
+/* Optional: Style the map iframe */
+footer iframe {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+  </style>
+</head>
+<body>
+ <!-- Sticky Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <!-- Brand and Search Row -->
+    <a class="navbar-brand fw-bold" id="hdd" href="index.html">
+      <span class="text-white">NEX</span><span class="text-warning">TAG</span>
+    </a>
+
+    <!-- Like and Cart Icons -->
+    <div class="d-flex align-items-center">
+      <!-- Like Icon -->
+      <i class="fas fa-heart like-button"></i>
+      <!-- Cart Icon -->
+      <div class="cart">
+        <a href="cart.html" class="text-decoration-none text-white">
+          <span class="cart-icon">
+            🛒
+            <span class="cart-count">0</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+  <!-- Nav Links Section -->
+  <div class="nav-links">
+      <div class="container">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index0.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+  </div>
+  
+
+  <section class="story">
+    <h2>Our Story</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>2020</h3>
+          <p>We started as a small family business focused on handcrafted wallets.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>2022</h3>
+          <p>Expanded to include premium purse designs and reached global customers.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>2024</h3>
+          <p>Launched our flagship online store, bringing our vision to life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="education">
+    <h2>Educational Content</h2>
+    <div class="education-grid">
+      <div class="education-box">
+        <h3>How to Choose the Perfect Wallet</h3>
+        <p>Learn how to pick a wallet that complements your style and needs.</p>
+      </div>
+      <div class="education-box">
+        <h3>Top 5 Materials for Wallets</h3>
+        <p>Discover the benefits of leather, vegan options, and more.</p>
+      </div>
+      <div class="education-box">
+        <h3>Caring for Your Wallet</h3>
+        <p>Tips to keep your wallet looking brand new for years.</p>
+      </div>
+    </div>
+  </section>
+
+ <!-- Footer Section -->
+ <footer class="footer">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-8">
+            <h3 class="fw-bold">Subscribe for the Daily Updates</h3>
+            <p class="text-muted">Stay updated with the latest offers, product launches, and more.</p>
+            <form id="subscribeForm" class="d-flex justify-content-center">
+                <input type="email" id="emailInput" placeholder="Enter your email" class="form-control w-50 me-2">
+                <button type="submit" class="btn btn-warning">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    <div id="notification" class="alert alert-success text-center d-none" role="alert">
+        Thank you for subscribing! 🎉 Stay tuned for the latest updates and offers.
+    </div>
+</div>
+
+      <div class="row text-center text-md-start justify-content-center">
+          <!-- Map Section (Start) -->
+          <div class="col-md-3 mb-4">
+              <h5 class="fw-bold">Nextag</h5>
+              <p class="text-muted small">We seamlessly connect you with premium purses, wallets, and accessories.</p>
+              <!-- Mini Map Section -->
+              <iframe src="https://www.google.com/maps/embed?pb=your_map_link" width="100%" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+          </div>
+
+          <!-- Quick Links Section (Centered) -->
+          <div class="col-md-4 mb-4">
+              <div class="row">
+                  <div class="col-md-6" id="quicklinks">
+                      <h6 class="fw-bold">Quick Links</h6>
+                      <ul class="list-unstyled small">
+                          <li><a href="index.html" class="text-white">Index</a></li>
+                          <li><a href="about.html" class="text-white">About</a></li>
+                          <li><a href="contact.html" class="text-white">Contact</a></li>
+                          <li><a href="services.html" class="text-white">Services</a></li>
+                      </ul>
+                  </div>
+                  <div class="col-md-6" id="quicklinks">
+                      <h6 class="fw-bold">Platform</h6>
+                      <ul class="list-unstyled small">
+                          <li><a href="blog.html" class="text-white">Blogs</a></li>
+                          <li><a href="educat.html" class="text-white">Educational</a></li>
+                          <li><a href="sales.html" class="text-white">Sales</a></li>
+                          <li><a href="business.html" class="text-white">Buisness</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Contact Section (End) -->
+          <div class="col-md-3 mb-4">
+              <h6 class="fw-bold">Contact Us</h6>
+              <a href="contact.html" class="btn btn-outline-warning w-100" target="_blank" rel="noopener noreferrer">
+                Get in touch
+              </a>
+              <!-- Additional Contact Details -->
+              <div class="mt-3 text-muted small">
+                  <p>Call Us: +123 456 7890</p>
+                  <p>Email: support@nextag.com</p>
+                  <p>Address: 123 Fashion St., New York, NY</p>
+              </div>
+              <!-- Social Media Icons -->
+              <div class="social-icons mt-3">
+                <a href="https://www.facebook.com/yourpage" class="text-white me-3" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com/yourprofile" class="text-white me-3" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/yourprofile" class="text-white me-3" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/yourprofile" class="text-white me-3" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            
+          </div>
+      </div>
+      <hr class="bg-warning">
+      <div class="row">
+          <div class="col text-center">
+              <p class="small mb-0">&copy; 2025 Nextag | All Rights Reserved</p>
+          </div>
+      </div>
+  </div>
+</footer>
+<script>
+   document.getElementById('subscribeForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent form submission
+        
+        const emailInput = document.getElementById('emailInput');
+        const notification = document.getElementById('notification');
+        
+        // Email validation
+        if (!emailInput.value.trim()) {
+            emailInput.classList.add('is-invalid');
+            alert('Email is required!');
+            return;
+        }
+        
+        emailInput.classList.remove('is-invalid');
+        
+        // Show the notification
+        notification.classList.remove('d-none');
+        
+        // Optional: Hide the notification after 5 seconds
+        setTimeout(() => {
+            notification.classList.add('d-none');
+        }, 5000);
+        
+        // Reset the form
+        emailInput.value = '';
+    });
+</script>
+</body>
+</html>

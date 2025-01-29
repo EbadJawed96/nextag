@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXTAG Blog - Unique Style</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #111;
+            color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        
+     /* Header Section */
+.header {
+    background: linear-gradient(90deg, rgb(248, 248, 0),#FFD700);
+    color: #000;
+    text-align: center;
+    padding: 50px 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(255, 230, 0, 0.5);
+}
+
+.header h1 {
+    font-size: 3.5rem;
+    color: #ffd700;
+    text-transform: uppercase;
+    animation: textGlow 1.5s infinite alternate;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.header h1:hover {
+    color: #fff700;
+    text-shadow: 0 0 15px #fff700;
+}
+
+.header h1:active {
+    transform: scale(0.95);
+    filter: brightness(1.3);
+}
+
+.header p {
+    font-size: 1.4rem;
+    margin-top: 10px;
+    color: #222;
+    font-weight: bold;
+    animation: fadeIn 2s ease;
+}
+
+/* Animations */
+@keyframes textGlow {
+    from {
+        text-shadow: 0 0 15px #ffd700, 0 0 30px #ffd700, 0 0 45px #fff700, 0 0 60px #fff700;
+    }
+    to {
+        text-shadow: 0 0 25px #fff44f, 0 0 40px #fff44f, 0 0 60px #fffa8b, 0 0 80px #fffa8b;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://example.com/hero-bg.jpg') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin: 0;
+            animation: fadeIn 2s;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Blog Section */
+        .blog-section {
+            padding: 40px;
+            background: #222;
+        }
+
+        .blog-section h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .blog-card {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(244, 208, 63, 0.5); /* subtle yellow */
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px; /* Set a fixed height for all images */
+            object-fit: cover; /* This ensures the images cover the space without distorting */
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .blog-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .blog-card p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 15px;
+            background: #f4d03f;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .read-more:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Product Detail Section */
+        .product-detail-section {
+            padding: 40px;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .product-detail-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .product-detail-section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .product-detail-section .product-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .product-card {
+            background-color: #000;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 250px;
+            margin-bottom: 20px;
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .product-card h4 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(244, 208, 63, 0.5); /* subtle yellow */
+        }
+
+        .product-card a {
+            display: inline-block;
+            background-color: #f4d03f;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .product-card a:hover {
+            background-color: #fff;
+            color: #111;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .product-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @keyframes textGlow {
+      from {
+        text-shadow: 0 0 5px yellow, 0 0 10px yellow;
+      }
+      to {
+        text-shadow: 0 0 15px yellow, 0 0 30px yellow;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+        html {
+            scroll-behavior: smooth;
+        }
+        .full-text {
+            display: none;
+        }
+        /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Dark Theme Background */
+.bg-dark {
+  background-color: #121212;
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid #FFD700;
+}
+
+/* Navbar Styles */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease;
+  color: #fff;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.1);
+}
+
+.nav-links {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #FFD700;
+  background-color: #000000;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #FFD700;
+  transform: scale(1.1);
+}
+
+/* Header Text Colors */
+#hdd {
+  color: #fff;
+}
+
+.span {
+  color: #ffcc33;
+}
+/* LIKE-ICON */
+.like-button {
+  position: relative;
+  font-size: 25px;
+  padding-right: 8px;
+  color: #ccc;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.like-button.liked {
+  color: #ff4757;
+  transform: scale(1.2);
+}
+
+/* Sparkle Animation */
+.sparkle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ffdd59;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkle-animation 0.6s ease forwards;
+}
+
+@keyframes sparkle-animation {
+  0% {
+      transform: scale(0.5);
+      opacity: 1;
+  }
+  50% {
+      transform: scale(1.5);
+      opacity: 1;
+  }
+  100% {
+      transform: scale(0);
+      opacity: 0;
+  }
+}
+
+/* Bubble Notification Styles */
+.bubble-notification {
+  position: absolute;
+  top: 60px; /* Adjust this value to position the bubble below the button */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff4757;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: bubble-down 0.6s ease forwards, fade-out 1.6s ease forwards 1.6s;
+}
+
+@keyframes bubble-down {
+  0% {
+      opacity: 0;
+      transform: translate(-50%, -20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+/* CART */
+.cart {
+  position: relative;
+}
+
+.cart-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+}
+
+/* Notification Styles */
+.notification {
+  position: fixed;
+  top: 10%;
+  right: 10px;
+  background: #28a745;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease-in-out;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Footer Section */
+.footer {
+  background-color: #000;
+  color: #fff;
+  padding: 2rem;
+}
+
+.footer h3,
+.footer h5,
+.footer h6 {
+  color: #fff;
+}
+
+.footer p,
+.footer ul li a {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s ease; /* Smooth transition for links */
+}
+
+/* Hover effect for links */
+.footer ul li a:hover {
+  color: #ffd700; /* Gold color on hover */
+}
+
+/* Social Media Icons */
+.footer .social-icons a {
+  font-size: 20px;
+  color: #bbb; /* Default color for social media icons */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and scale */
+  text-decoration: none;
+  margin-right: 15px; /* Space between icons */
+}
+
+.footer .social-icons a:hover {
+  color: #ffd700; /* Gold color on hover */
+  transform: scale(1.2); /* Slightly enlarge the icons */
+}
+
+/* Font Awesome Icon Sizes */
+.footer .social-icons i {
+  font-size: 20px; /* Set the size of the icons */
+}
+
+/* Button styles */
+.footer .btn-warning {
+  background-color: #ffd700;
+  border: none;
+  color: #000;
+  transition: background-color 0.3s ease;
+}
+
+.footer .btn-warning:hover {
+  background-color: #ffcc33;
+}
+
+.footer .btn-outline-warning {
+  border: 1px solid #ffd700;
+  color: #ffd700;
+  transition: all 0.3s ease;
+}
+
+.footer .btn-outline-warning:hover {
+  background-color: #ffd700;
+  color: #000;
+}
+
+/* Ensure the layout is centered and properly spaced */
+.footer .row {
+  display: flex;
+  justify-content: center;
+  gap: 3rem; /* Add gap between columns */
+}
+
+.footer .col-md-3 {
+  flex: 1;
+  text-align: center;
+}
+
+.footer .col-md-4 {
+  flex: 2;
+  text-align: center;
+}
+
+/* Optional: Style the map iframe */
+footer iframe {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Sticky Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <!-- Brand and Search Row -->
+      <a class="navbar-brand fw-bold" id="hdd" href="index.html">
+        <span class="text-white">NEX</span><span class="text-warning">TAG</span>
+      </a>
+  
+      <!-- Like and Cart Icons -->
+      <div class="d-flex align-items-center">
+        <!-- Like Icon -->
+        <i class="fas fa-heart like-button"></i>
+        <!-- Cart Icon -->
+        <div class="cart">
+          <a href="cart.html" class="text-decoration-none text-white">
+            <span class="cart-icon">
+              🛒
+              <span class="cart-count">0</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+    <!-- Nav Links Section -->
+    <div class="nav-links">
+        <div class="container">
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index0.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+     
+
+    <div class="header">
+        <h2>Discover Style & Elegance</h2>
+        <p>Stay updated with the latest trends in purses and wallets!</p>
+    </div>
+
+    <section class="blog-section">
+        <h3>Latest Articles</h3>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <img src="Footer Pages/blog page/trend wallet.jpg" alt="Blog Post 1" loading="lazy">
+                <h4>Top Trends in Wallets</h4>
+                <p class="short-text">Explore the latest designs and trends in modern wallets that are taking the fashion world by storm. From minimalist to luxury, we cover it all...</p>
+                <p class="full-text">Explore the latest designs and trends in modern wallets that are taking the fashion world by storm. From minimalist to luxury, we cover it all. Whether you're looking for sleek cardholders or spacious billfolds, the variety of wallets available today suits every taste and occasion. Some wallets are designed with innovative features, such as RFID-blocking technology, while others boast artistic craftsmanship...</p>
+                <a class="read-more" href="javascript:void(0);" onclick="toggleText(this)">Read More</a>
+            </div>
+            <div class="blog-card">
+                <img src="Footer Pages/blog page/trend purse.jpg" alt="Blog Post 2" loading="lazy">
+                <h4>How to Choose the Perfect Purse</h4>
+                <p class="short-text">Tips and tricks to help you pick the ideal purse that suits your style, needs, and budget. Find out what to look for when buying a purse...</p>
+                <p class="full-text">Choosing the right purse involves understanding your needs and personal style. Whether you prefer a compact crossbody bag or a spacious tote, it’s essential to consider factors such as functionality, durability, and appearance. A perfect purse should complement your outfits and also serve its purpose in daily use...</p>
+                <a class="read-more" href="javascript:void(0);" onclick="toggleText(this)">Read More</a>
+            </div>
+            <div class="blog-card">
+                <img src="Footer Pages/blog page/Purseluxe Series.webp" alt="Blog Post 3" loading="lazy">
+                <h4>Luxury on a Budget</h4>
+                <p class="short-text">Discover how to enjoy luxurious wallets and purses without breaking the bank. Affordable options that offer premium quality...</p>
+                <p class="full-text">Many luxury purses and wallets have a high-end price tag, but you don’t have to spend a fortune to enjoy luxury. There are plenty of high-quality yet affordable options available that offer the same style and craftsmanship without the hefty price. Discover how to choose the right brands and materials that provide the best value for your money...</p>
+                <a class="read-more" href="javascript:void(0);" onclick="toggleText(this)">Read More</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="product-detail-section">
+        <h3>Explore Our Stylish Purses and Wallets</h3>
+        <p>At NEXTAG, we offer a curated collection of premium purses and wallets designed to elevate your style. Our products combine high-end materials, expert craftsmanship, and functional designs. Whether you're looking for a sleek wallet, a chic purse, or something that blends both style and practicality, we have it all!</p>
+        <div class="product-cards">
+            <div class="product-card">
+                <img src="Footer Pages/blog page/man-holding-wallet-in-car.webp" alt="Wallet 1">
+                <h4>Classic Leather Wallet</h4>
+                <p>This timeless wallet is crafted from genuine leather, offering durability and elegance. With multiple compartments for your cards and cash, it's the perfect blend of form and function.</p>
+                <a href="gucciprd.html">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="Footer Pages/blog page/Luxora Collection.webp" alt="Purse 1">
+                <h4>Chic Handbag</h4>
+                <p>Our chic handbag features a sleek, modern design with plenty of room for your essentials. Crafted from soft, premium leather, this purse is perfect for any occasion.</p>
+                <a href="diorprd.html">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="Footer Pages/blog page/minimalist_wallet_1200x1200.webp" alt="Wallet 2">
+                <h4>Minimalist Wallet</h4>
+                <p>For those who prefer simplicity, this minimalist wallet is slim, stylish, and perfect for carrying your essentials without bulk. Available in a variety of colors!</p>
+                <a href="louisvuitonprd.html">Shop Now</a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section -->
+<footer class="footer">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-8">
+            <h3 class="fw-bold">Subscribe for the Daily Updates</h3>
+            <p class="text-muted">Stay updated with the latest offers, product launches, and more.</p>
+            <form id="subscribeForm" class="d-flex justify-content-center">
+                <input type="email" id="emailInput" placeholder="Enter your email" class="form-control w-50 me-2">
+                <button type="submit" class="btn btn-warning">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    <div id="notification" class="alert alert-success text-center d-none" role="alert">
+        Thank you for subscribing! 🎉 Stay tuned for the latest updates and offers.
+    </div>
+</div>
+
+    
+
+        <div class="row text-center text-md-start justify-content-center">
+            <!-- Map Section (Start) -->
+            <div class="col-md-3 mb-4">
+                <h5 class="fw-bold">Nextag</h5>
+                <p class="text-muted small">We seamlessly connect you with premium purses, wallets, and accessories.</p>
+                <!-- Mini Map Section -->
+                <iframe src="https://www.google.com/maps/embed?pb=your_map_link" width="100%" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            </div>
+  
+            <!-- Quick Links Section (Centered) -->
+            <div class="col-md-4 mb-4">
+                <div class="row">
+                    <div class="col-md-6" id="quicklinks">
+                        <h6 class="fw-bold">Quick Links</h6>
+                        <ul class="list-unstyled small">
+                            <li><a href="index.html" class="text-white">Index</a></li>
+                            <li><a href="about.html" class="text-white">About</a></li>
+                            <li><a href="contact.html" class="text-white">Contact</a></li>
+                            <li><a href="services.html" class="text-white">Services</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6" id="quicklinks">
+                        <h6 class="fw-bold">Platform</h6>
+                        <ul class="list-unstyled small">
+                            <li><a href="blog.html" class="text-white">Blogs</a></li>
+                            <li><a href="educat.html" class="text-white">Educational</a></li>
+                            <li><a href="sales.html" class="text-white">Sales</a></li>
+                            <li><a href="business.html" class="text-white">Buisness</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- Contact Section (End) -->
+            <div class="col-md-3 mb-4">
+                <h6 class="fw-bold">Contact Us</h6>
+                <a href="contact.html" class="btn btn-outline-warning w-100" target="_blank" rel="noopener noreferrer">
+                  Get in touch
+                </a>
+                <!-- Additional Contact Details -->
+                <div class="mt-3 text-muted small">
+                    <p>Call Us: +123 456 7890</p>
+                    <p>Email: support@nextag.com</p>
+                    <p>Address: 123 Fashion St., New York, NY</p>
+                </div>
+                <!-- Social Media Icons -->
+                <div class="social-icons mt-3">
+                  <a href="https://www.facebook.com/yourpage" class="text-white me-3" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://www.twitter.com/yourprofile" class="text-white me-3" target="_blank"><i class="fab fa-twitter"></i></a>
+                  <a href="https://www.instagram.com/yourprofile" class="text-white me-3" target="_blank"><i class="fab fa-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/yourprofile" class="text-white me-3" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+              
+            </div>
+        </div>
+        <hr class="bg-warning">
+        <div class="row">
+            <div class="col text-center">
+                <p class="small mb-0">&copy; 2025 Nextag | All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+  </footer>
+
+   
+    <script>
+        function toggleText(button) {
+    const shortText = button.closest('.blog-card').querySelector('.short-text');
+    const fullText = button.closest('.blog-card').querySelector('.full-text');
+    if (fullText.style.display === 'none' || !fullText.style.display) {
+        fullText.style.display = 'block';
+        shortText.style.display = 'none';
+        button.textContent = 'Read Less';
+    } else {
+        fullText.style.display = 'none';
+        shortText.style.display = 'block';
+        button.textContent = 'Read More';
+    }
+}
+document.querySelector('.header h1').addEventListener('click', () => {
+    const header = document.querySelector('.header');
+    header.style.animation = 'pulse 0.6s ease';
+    setTimeout(() => {
+        header.style.animation = ''; // Reset animation to allow repeated clicks
+    }, 600);
+});
+
+/* Adding a pulse animation effect */
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+        background: linear-gradient(90deg, #fff700, #ffd700);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+`;
+</script>
+
+<script>
+
+    
+      document.getElementById('subscribeForm').addEventListener('submit', function (event) {
+          event.preventDefault(); // Prevent form submission
+          
+          const emailInput = document.getElementById('emailInput');
+          const notification = document.getElementById('notification');
+          
+          // Email validation
+          if (!emailInput.value.trim()) {
+              emailInput.classList.add('is-invalid');
+              alert('Email is required!');
+              return;
+          }
+          
+          emailInput.classList.remove('is-invalid');
+          
+          // Show the notification
+          notification.classList.remove('d-none');
+          
+          // Optional: Hide the notification after 5 seconds
+          setTimeout(() => {
+              notification.classList.add('d-none');
+          }, 5000);
+          
+          // Reset the form
+          emailInput.value = '';
+      });
+  </script>
+  
+    </html>
+    
+        
+    </body>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXTAG</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+/* Body and general reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Full-screen container with background image */
+.fullscreen-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('index.png'); /* Replace with the path to your image */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: flex-end; /* Align content to the right */
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Overlay to make text visible over the image */
+.overlay {
+    position: absolute;
+    right: 30px; /* Right side padding */
+    top: 50%;
+    transform: translateY(-50%); /* Center the content vertically */
+    width: 300px; /* Width for the selection and button */
+    background: rgba(0, 0, 0, 0); /* Lower transparency */
+    padding: 20px;
+    color: rgba(0, 0, 0, 0.647);
+    font-weight: bolder;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Country Selection Styling */
+.country-selection {
+    margin-bottom: 20px;
+}
+
+.country-selection select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    width: 100%; /* Full width for the select */
+    background: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+    color: #333; /* Dark text color for contrast */
+}
+
+/* Button Styling */
+.enter-button-container {
+    margin-top: 20px;
+}
+
+.enter-btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #ffbf00; /* Amber color */
+    border: none;
+    color: white;
+    border-radius: 0px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    width: 100%; /* Full width for the button */
+}
+
+.enter-btn:hover {
+    background-color: #ffa500; /* Lighter amber on hover */
+    transform: scale(1.05); /* Slightly enlarge the button */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow for a 3D effect */
+}
+
+/* Spinner Loader */
+.spinner-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner {
+    border: 8px solid #f3f3f3; /* Light gray */
+    border-top: 8px solid #ffbf00; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Typing Animation */
+.typing-text {
+    font-size: 24px;
+    color: #ffffff;
+    font-family: "Courier New", Courier, monospace;
+    overflow: hidden; /* Ensures text is hidden initially */
+    white-space: nowrap; /* Keeps the text on one line */
+    border-right: .15em solid #ffbf00; /* Cursor effect */
+    width: 0;
+    animation: typing 2.5s steps(15) 1s forwards, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 12em; /* Change this based on your text length */
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .overlay {
+        width: 250px; /* Smaller overlay width on mobile */
+    }
+    .enter-btn, .country-selection select {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+</style>
+
+<body>
+    <!-- Full-screen container -->
+    <div class="fullscreen-container">
+        <div class="overlay">
+            <form id="enterForm" action="index0.html" method="get" onsubmit="return checkCountrySelection()">
+                <div class="country-selection">
+                    <label for="country">Choose a Country:</label>
+                    <select id="country" name="country" required>
+                        <option value="" selected disabled>Select a Country</option>
+                        <option value="pakistan">Pakistan</option>
+                        <option value="usa">USA</option>
+                        <option value="canada">Canada</option>
+                        <option value="uk">UK</option>
+                        <option value="india">India</option>
+                        <option value="restoftheworld">Rest of the World</option>
+                    </select>
+                </div>
+                
+                <div class="enter-button-container">
+                    <!-- Submit button -->
+                    <button type="submit" class="enter-btn">Enter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Spinner Loader with Typing Effect -->
+    <div id="spinnerLoader" class="spinner-loader" style="display: none;">
+        <div class="spinner"></div>
+        <div class="typing-text">NEXTAG.....</div>
+    </div>
+
+    <script>
+        // Function to check if a country is selected before submitting the form
+        function checkCountrySelection() {
+            const country = document.getElementById('country').value;
+            if (country) {
+                // Show the spinner loader with typing text before submitting the form
+                document.getElementById('spinnerLoader').style.display = 'flex';
+
+                // Allow form submission after a slight delay
+                setTimeout(() => {
+                    document.getElementById('enterForm').submit(); // Submit the form
+                }, 2500); // Delay to show spinner and typing effect before redirecting
+                return false; // Prevent form submission immediately
+            } else {
+                alert("Please select a country before entering.");
+                return false; // Prevent form submission if no country is selected
+            }
+        }
+    </script>
+</body>
+</html>

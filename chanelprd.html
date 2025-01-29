@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Product Page - NEXTAG</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and container */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+/* Navbar Styles */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease;
+  color: #fff;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.1);
+}
+/* LIKE-ICON */
+.like-button {
+  position: relative;
+  font-size: 25px;
+  padding-right: 8px;
+  color: #ccc;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.like-button.liked {
+  color: #ff4757;
+  transform: scale(1.2);
+}
+
+/* Sparkle Animation */
+.sparkle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ffdd59;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkle-animation 0.6s ease forwards;
+}
+
+@keyframes sparkle-animation {
+  0% {
+      transform: scale(0.5);
+      opacity: 1;
+  }
+  50% {
+      transform: scale(1.5);
+      opacity: 1;
+  }
+  100% {
+      transform: scale(0);
+      opacity: 0;
+  }
+}
+
+/* Bubble Notification Styles */
+.bubble-notification {
+  position: absolute;
+  top: 60px; /* Adjust this value to position the bubble below the button */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff4757;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: bubble-down 0.6s ease forwards, fade-out 1.6s ease forwards 1.6s;
+}
+
+@keyframes bubble-down {
+  0% {
+      opacity: 0;
+      transform: translate(-50%, -20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+
+.cart {
+  position: relative;
+}
+
+.cart-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+}
+
+/* Notification Styles */
+.notification {
+  position: fixed;
+  top: 10%;
+  right: 10px;
+  background: #28a745;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease-in-out;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Wrapper for Sidebar and Content */
+.wrapper {
+    display: flex;
+    flex-wrap: nowrap; /* Ensures sidebar and content stay in one row */
+}
+
+/* Sidebar Styles */
+.quick-links {
+    flex: 0 0 250px; /* Fix the sidebar width */
+    background: #f9f9f9;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    height: 100vh; /* Full height of the screen */
+    overflow-y: auto; /* Enable vertical scrolling */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 2; /* Ensures the sidebar stays above the main content */
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1; /* Takes up remaining space */
+    padding: 20px;
+    margin-left: 10px; /* Ensures there's space between the sidebar and content */
+    background: #fff;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+}
+
+/* General Link Styles */
+.quick-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.quick-links li {
+    margin: 10px 0;
+}
+
+.quick-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.quick-links a:hover {
+    color: #ffffff; /* White text for better contrast */
+    background-color: #ffdd59; /* A professional blue color */
+    padding: 10px 15px; /* Adjust padding for a button-like appearance */
+    border-radius: 12px; /* Smoother corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for a raised effect */
+    transition: all 0.3s ease; /* Smooth transition effect */
+    text-decoration: none; /* Ensure no underline appears */
+}
+/* Sidebar Toggle Button Styles */
+.sidebar-toggle {
+    display: none; /* Hidden by default */
+    background-color: #ffdd59;
+    color: #fff;
+    border: none;
+    padding-top: 70px;
+    font-size: 30px;
+    border-radius: 5px;
+    position: fixed; /* Position it at the top-left corner */
+    top: 20px;
+    left: 20px;
+    z-index: 999; /* Ensure the button stays on top of other elements */
+    cursor: pointer;
+}
+
+/* Show Sidebar Toggle Button on Smaller Screens */
+@media (max-width: 1024px) {
+    .sidebar-toggle {
+        display: block; /* Show the button on small screens */
+    }
+
+    /* Sidebar Styles */
+    .quick-links {
+        position: fixed;
+        top: 0;
+        left: -250px; /* Initially hide the sidebar off-screen */
+        width: 250px;
+        height: 100%;
+        background: #f9f9f9;
+        transition: left 0.3s ease; /* Smooth transition for opening/closing */
+        z-index: 998;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Sidebar open state */
+    .quick-links.open {
+        left: 0; /* When open, the sidebar moves to the left */
+    }
+
+    /* Main Content Styles */
+    .main-content {
+        margin-left: 0; /* Adjust content position */
+    }
+
+    .wrapper {
+        flex-wrap: wrap; /* Stack sidebar and content on small screens */
+    }
+}
+
+/* Divider Styles */
+.divider {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 15px 0;
+}
+
+/* Product Grid */
+.product-grid {
+    padding-top: 20px;
+}
+
+/* Product Card */
+.product-card {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on product card */
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Product Image */
+.product-image {
+    position: relative;
+    width: 100%;
+    height: 250px; /* Fixed height to ensure square images */
+    overflow: hidden;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+    transition: opacity 0.3s ease; /* Smooth fade effect */
+}
+
+.default-image {
+    opacity: 1;
+}
+
+.hover-image {
+    opacity: 0; /* Initially hide hover image */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Hover Effect */
+.product-image:hover .default-image {
+    opacity: 0; /* Hide default image on hover */
+}
+
+.product-image:hover .hover-image {
+    opacity: 1; /* Show hover image on hover */
+}
+
+/* Product Info Section */
+.product-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.product-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.price {
+    font-size: 1.1em;
+    color: #2d2d2d;
+    margin-bottom: 15px;
+}
+
+.add-to-cart-btn {
+    background-color: #8B0000; /* Dark background color */
+    color: white;            /* White text */
+    padding: 8px 16px;       /* Smaller padding for a smaller button */
+    border: none;            /* No border */
+    border-radius: 0px;      /* Slightly smaller rounded corners */
+    font-size: 14px;         /* Smaller text size */
+    font-weight: bold;       /* Bold text */
+    cursor: pointer;        /* Pointer cursor on hover */
+    text-transform: uppercase; /* Uppercase text for better visibility */
+    transition: all 0.3s ease; /* Smooth transition effect for hover */
+}
+
+.add-to-cart-btn:hover {
+    background-color: #B22222; /* Change to yellow on hover */
+    color: #ffffff;               /* Text color changes to dark */
+    transform: scale(1.05);     /* Slightly enlarge the button */
+}
+
+.add-to-cart-btn:active {
+    background-color:  #B22222; /* Slightly darker yellow when clicked */
+    transform: scale(1);        /* Normal size when clicked */
+}
+
+.add-to-cart-btn:focus {
+    outline: none;              /* Remove focus outline */
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.5); /* Add focus shadow for accessibility */
+}
+
+
+/* Responsive Layout */
+@media (max-width: 992px) {
+    .product-grid .col-lg-4 {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-grid .col-md-6 {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-title {
+        font-size: 1.1em;
+    }
+
+    .price {
+        font-size: 1em;
+    }
+
+    .btn-add-to-cart {
+        font-size: 0.9em;
+    }
+}
+
+</style>
+<body>
+
+<!-- Sticky Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <!-- Brand and Search Row -->
+      <a class="navbar-brand fw-bold" id="hdd" href="index.html">
+        <span class="text-white">NEX</span><span class="text-warning">TAG</span>
+      </a>
+  
+      <!-- Like and Cart Icons -->
+      <div class="d-flex align-items-center">
+        <!-- Like Icon -->
+        <i class="fas fa-heart like-button"></i>
+        <!-- Cart Icon -->
+        <div class="cart">
+          <a href="cart.html" class="text-decoration-none text-white">
+            <span class="cart-icon">
+              🛒
+              <span class="cart-count">0</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+    <div class="wrapper">
+<!-- Sidebar Toggle Button for Small Screens -->
+<button class="sidebar-toggle" id="sidebarToggle">☰</button>
+
+<!-- Sidebar -->
+<div class="quick-links" id="sidebar">
+  <h3 class="sidebar-title">Quick Links</h3>
+  <ul class="main-links">
+    <li><a href="index0.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <hr class="divider">
+  <h3 class="sidebar-title">Brands</h3>
+  <ul class="brand-links">
+    <li><a href="diorprd.html">Dior</a></li>
+    <li><a href="chanelprd.html">Chanel</a></li>
+    <li><a href="gucciprd.html">Gucci</a></li>
+    <li><a href="ckprd.html">Calvin Klein</a></li>
+    <li><a href="zaraprd.html">Zara</a></li>
+    <li><a href="louisvuitonprd.html">Louis Vuitton</a></li>
+  </ul>
+  <hr class="divider">
+  <h3 class="sidebar-title">Other Links</h3>
+  <ul class="small-links">
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="educat.html">Educational</a></li>
+    <li><a href="sales.html">Sales</a></li>
+    <li><a href="business.html">Business</a></li>
+  </ul>
+</div>
+      
+    <!-- Main Content -->
+    <div class="main-content">
+
+<!-- Product Grid Section -->
+<section class="product-grid container mt-5">
+    <div class="row">
+        <!-- Product 1 -->
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="chanelimgs/1.jpg" alt="Elegant Tote" class="product-img default-image">
+                    <img src="chanelimgs/11.jpg" alt="Elegant Tote Hover" class="product-img hover-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Elegant Tote</h3>
+                    <p class="price">$1,550.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart({ name: 'Elegant Tote', price: 1550.00, image: 'chanelimgs/1.jpg' })">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+  
+        <!-- Product 2 -->
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="chanelimgs/2.webp" alt="Chic Satchel" class="product-img default-image">
+                    <img src="chanelimgs/22.jfif" alt="Chic Satchel Hover" class="product-img hover-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Chic Satchel</h3>
+                    <p class="price">$1,545.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart({ name: 'Chic Satchel', price: 1545.00, image: 'chanelimgs/2.webp' })">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+  
+        <!-- Product 3 -->
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="chanelimgs/3.jpg" alt="Modern Backpack" class="product-img default-image">
+                    <img src="chanelimgs/33.webp" alt="Modern Backpack Hover" class="product-img hover-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Modern Backpack</h3>
+                    <p class="price">$1,560.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart({ name: 'Modern Backpack', price: 1560.00, image: 'chanelimgs/3.jpg' })">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+  
+        <div class="row">
+          <!-- Product 4 -->
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="product-card">
+                  <div class="product-image">
+                      <img src="chanelimgs/4.webp" alt="Classic Shoulder Bag" class="product-img default-image">
+                      <img src="chanelimgs/44.webp" alt="Classic Shoulder Bag Hover" class="product-img hover-image">
+                  </div>
+                  <div class="product-info">
+                      <h3 class="product-title">Classic Shoulder Bag</h3>
+                      <p class="price">$1,550.00</p>
+                      <button class="add-to-cart-btn" onclick="addToCart({ name: 'Classic Shoulder Bag', price: 1550.00, image: 'chanelimgs/4.webp' })">Add to Cart</button>
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Product 5 -->
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="product-card">
+                  <div class="product-image">
+                      <img src="chanelimgs/5.webp" alt="Trendy Crossbody" class="product-img default-image">
+                      <img src="chanelimgs/55.webp" alt="Trendy Crossbody Hover" class="product-img hover-image">
+                  </div>
+                  <div class="product-info">
+                      <h3 class="product-title">Trendy Crossbody</h3>
+                      <p class="price">$1,545.00</p>
+                      <button class="add-to-cart-btn" onclick="addToCart({ name: 'Trendy Crossbody', price: 1545.00, image: 'chanelimgs/5.webp' })">Add to Cart</button>
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Product 6 -->
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="product-card">
+                  <div class="product-image">
+                      <img src="chanelimgs/6.jpg" alt="Urban Luxe Tote" class="product-img default-image">
+                      <img src="chanelimgs/66.webp" alt="Urban Luxe Tote Hover" class="product-img hover-image">
+                  </div>
+                  <div class="product-info">
+                      <h3 class="product-title">Urban Luxe Tote</h3>
+                      <p class="price">$1,560.00</p>
+                      <button class="add-to-cart-btn" onclick="addToCart({ name: 'Urban Luxe Tote', price: 1560.00, image: 'chanelimgs/6.jpg' })">Add to Cart</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>
+</div>
+
+  <script>
+    function addToCart(product) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+</script>
+<script>
+    // Function to add products to the cart
+    function addToCart(product) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      showNotification(`${product.name} added to cart!`);
+    }
+  
+    // Function to update cart count
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.querySelector('.cart-count').textContent = cart.length;
+    }
+  
+    // Call this function on page load to ensure the cart count is accurate
+    document.addEventListener('DOMContentLoaded', updateCartCount);
+  
+    // Function to show a notification
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.className = 'notification show';
+      notification.textContent = message;
+      document.body.appendChild(notification);
+  
+      // Remove the notification after 3 seconds
+      setTimeout(() => {
+        notification.classList.remove('show');
+        notification.classList.add('hidden');
+        setTimeout(() => notification.remove(), 500); // Remove after transition
+      }, 3000);
+    }
+  </script>
+  <script>
+    const likeButton = document.querySelector('.like-button');
+  
+    likeButton.addEventListener('click', function () {
+        // Toggle liked class
+        this.classList.toggle('liked');
+  
+        // Create a sparkle effect
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        const size = Math.random() * 10 + 5;
+        sparkle.style.width = `${size}px`;
+        sparkle.style.height = `${size}px`;
+        sparkle.style.top = `${Math.random() * 40 - 20}px`;
+        sparkle.style.left = `${Math.random() * 40 - 20}px`;
+        likeButton.appendChild(sparkle);
+  
+        // Remove sparkle after animation
+        setTimeout(() => {
+            sparkle.remove();
+        }, 600);
+  
+        // Show bubble notification
+        if (this.classList.contains('liked')) {
+            showBubbleNotification('Thank you for liking our page!');
+        }
+    });
+  
+    function showBubbleNotification(message) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble-notification');
+        bubble.innerText = message;
+  
+        // Append bubble to the like button
+        likeButton.appendChild(bubble);
+  
+        // Remove bubble after animation
+        setTimeout(() => {
+            bubble.remove();
+        }, 2200); // Matches fade-out duration
+    }
+    
+  </script>  
+<script>
+    // Get the toggle button and the sidebar
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+
+    // Add event listener to toggle the sidebar visibility
+    sidebarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open'); // Toggle the 'open' class to show/hide the sidebar
+    });
+</script>
+
+
+
+</body>
+</html>

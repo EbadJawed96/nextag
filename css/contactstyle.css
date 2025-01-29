@@ -1,0 +1,456 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    background-color: #111;
+}
+/* Dark Theme Background */
+.bg-dark {
+    background-color: #121212;
+    padding: 1rem 1.5rem;
+    border-bottom: 2px solid #FFD700;
+  }
+  /* Navbar Styles */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navbar-brand {
+    font-size: 2rem;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+    color: #fff;
+  }
+  
+  .navbar-brand:hover {
+    transform: scale(1.1);
+  }
+  
+  .nav-links {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #FFD700;
+    background-color: #000000;
+  }
+  
+  .nav-link {
+    color: rgba(255, 255, 255, 0.884);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #FFD700;
+    transform: scale(1.1);
+  }
+  
+  /* Header Text Colors */
+  #hdd {
+    color: #fff;
+  }
+  
+  .span {
+    color: #ffcc33;
+  }
+  /* LIKE-ICON */
+.like-button {
+  position: relative;
+  font-size: 25px;
+  padding-right: 8px;
+  color: #ccc;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.like-button.liked {
+  color: #ff4757;
+  transform: scale(1.2);
+}
+
+/* Sparkle Animation */
+.sparkle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ffdd59;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkle-animation 0.6s ease forwards;
+}
+
+@keyframes sparkle-animation {
+  0% {
+      transform: scale(0.5);
+      opacity: 1;
+  }
+  50% {
+      transform: scale(1.5);
+      opacity: 1;
+  }
+  100% {
+      transform: scale(0);
+      opacity: 0;
+  }
+}
+
+/* Bubble Notification Styles */
+.bubble-notification {
+  position: absolute;
+  top: 60px; /* Adjust this value to position the bubble below the button */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff4757;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: bubble-down 0.6s ease forwards, fade-out 1.6s ease forwards 1.6s;
+}
+
+@keyframes bubble-down {
+  0% {
+      opacity: 0;
+      transform: translate(-50%, -20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+  .cart {
+    position: relative;
+  }
+  
+  .cart-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.8rem;
+  }
+  
+  /* Notification Styles */
+  .notification {
+    position: fixed;
+    top: 10%;
+    right: 10px;
+    background: #28a745;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .notification.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .notification.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+/* Header */
+header {
+    background-color: #000;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+/* Contact Section */
+.contact-section {
+    background: linear-gradient(135deg, #333, #222);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-size: 2.5rem;
+    color: #f1c40f;
+    margin-bottom: 20px;
+}
+
+.contact-section .section-description {
+    font-size: 1.2rem;
+    color: #ddd;
+    margin-bottom: 40px;
+}
+
+.contact-section .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-section input, .contact-section textarea, .contact-section select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #555;
+    background-color: #222;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-section input:focus, .contact-section textarea:focus, .contact-section select:focus {
+    border-color: #f1c40f;
+    outline: none;
+}
+
+.contact-section button.cta-btn {
+    background-color: #f1c40f;
+    color: #000;
+    padding: 14px 30px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-section button.cta-btn:hover {
+    background-color: #000;
+    color: #f1c40f;
+}
+
+/* Social Links */
+.social-links {
+    margin-top: 40px;
+    font-size: 1.2rem;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #fff;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background-color: #444;
+    transition: background-color 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: #f1c40f;
+}
+
+/* Map Section */
+.map-section {
+    background-color: #222;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.map-section iframe {
+    border-radius: 8px;
+}
+
+/* Chat Widget */
+.chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f1c40f;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.chat-widget button {
+    background-color: #f1c40f;
+    color: #000;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.chat-widget button:hover {
+    background-color: #000;
+    color: #f1c40f;
+}
+/* Success Alert Styles */
+.success-alert {
+    position: fixed;
+    top: -60px; /* Initially hidden above the screen */
+    left: 0;
+    right: 0;
+    background-color: #27ae60;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    text-align: center;
+    border-bottom: 4px solid #1e7c3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    z-index: 999;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: top 0.4s ease-in-out; /* Smooth slide-in effect */
+}
+
+.success-alert.show {
+    top: 0; /* Slides into view */
+}
+
+#alert-icon {
+    font-size: 1.8rem;
+    margin-right: 15px;
+}
+
+#alert-message {
+    font-size: 1.1rem;
+}
+
+.success-alert.hide {
+    top: -60px; /* Hide it again */
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+/* Footer Section */
+.footer {
+    background-color: #000;
+    color: #fff;
+    padding: 2rem;
+  }
+  
+  .footer h3,
+  .footer h5,
+  .footer h6 {
+    color: #fff;
+  }
+  
+  .footer p,
+  .footer ul li a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth transition for links */
+  }
+  
+  /* Hover effect for links */
+  .footer ul li a:hover {
+    color: #ffd700; /* Gold color on hover */
+  }
+  
+  /* Social Media Icons */
+  .footer .social-icons a {
+    font-size: 20px;
+    color: #bbb; /* Default color for social media icons */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and scale */
+    text-decoration: none;
+    margin-right: 15px; /* Space between icons */
+  }
+  
+  .footer .social-icons a:hover {
+    color: #ffd700; /* Gold color on hover */
+    transform: scale(1.2); /* Slightly enlarge the icons */
+  }
+  
+  /* Font Awesome Icon Sizes */
+  .footer .social-icons i {
+    font-size: 20px; /* Set the size of the icons */
+  }
+  
+  /* Button styles */
+  .footer .btn-warning {
+    background-color: #ffd700;
+    border: none;
+    color: #000;
+    transition: background-color 0.3s ease;
+  }
+  
+  .footer .btn-warning:hover {
+    background-color: #ffcc33;
+  }
+  
+  .footer .btn-outline-warning {
+    border: 1px solid #ffd700;
+    color: #ffd700;
+    transition: all 0.3s ease;
+  }
+  
+  .footer .btn-outline-warning:hover {
+    background-color: #ffd700;
+    color: #000;
+  }
+  
+  /* Ensure the layout is centered and properly spaced */
+  .footer .row {
+    display: flex;
+    justify-content: center;
+    gap: 3rem; /* Add gap between columns */
+  }
+  
+  .footer .col-md-3 {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .footer .col-md-4 {
+    flex: 2;
+    text-align: center;
+  }
+  
+  /* Optional: Style the map iframe */
+  footer iframe {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  

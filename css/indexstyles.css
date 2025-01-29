@@ -1,0 +1,419 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Dark Theme Background */
+.bg-dark {
+  background-color: #121212;
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid #FFD700;
+}
+
+/* Navbar Styles */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease;
+  color: #fff;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.1);
+}
+
+.nav-links {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #FFD700;
+  background-color: #000000;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #FFD700;
+  transform: scale(1.1);
+}
+
+/* Header Text Colors */
+#hdd {
+  color: #fff;
+}
+
+.span {
+  color: #ffcc33;
+}
+/* LIKE-ICON */
+.like-button {
+  position: relative;
+  font-size: 25px;
+  padding-right: 8px;
+  color: #ccc;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.like-button.liked {
+  color: #ff4757;
+  transform: scale(1.2);
+}
+
+/* Sparkle Animation */
+.sparkle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ffdd59;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkle-animation 0.6s ease forwards;
+}
+
+@keyframes sparkle-animation {
+  0% {
+      transform: scale(0.5);
+      opacity: 1;
+  }
+  50% {
+      transform: scale(1.5);
+      opacity: 1;
+  }
+  100% {
+      transform: scale(0);
+      opacity: 0;
+  }
+}
+
+/* Bubble Notification Styles */
+.bubble-notification {
+  position: absolute;
+  top: 60px; /* Adjust this value to position the bubble below the button */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff4757;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: bubble-down 0.6s ease forwards, fade-out 1.6s ease forwards 1.6s;
+}
+
+@keyframes bubble-down {
+  0% {
+      opacity: 0;
+      transform: translate(-50%, -20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+/* CART */
+.cart {
+  position: relative;
+}
+
+.cart-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+}
+
+/* Notification Styles */
+.notification {
+  position: fixed;
+  top: 10%;
+  right: 10px;
+  background: #28a745;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease-in-out;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  z-index: 999;
+}
+
+/* Video Carousel Section */
+.video-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-section video {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Dark overlay for better text visibility */
+  text-align: start;
+  z-index: 1;
+}
+
+/* Brand Logos Section */
+.brand-logos {
+  background-color: #75757594;
+  padding: 3rem 0;
+}
+
+.brand-logos h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+/* Brand Logos Styling */
+.brand-logo {
+  width: 150px; /* Fixed width */
+  height: 150px; /* Fixed height */
+  border-radius: 50%; /* Makes images round */
+  object-fit: contain; /* Ensures full image is visible */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.brand-logo:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Shadow on hover */
+}
+
+/* Exclusive Offer and Sale Section Hover Styles */
+.offer-img,
+.sale-img {
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.offer-img:hover,
+.sale-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.offer-text,
+.sale-text {
+  transition: transform 0.5s ease, color 0.5s ease;
+}
+
+.offer-text:hover,
+.sale-text:hover {
+  transform: translateY(-10px);
+  color: #ffcc00;
+}
+
+/* Button Hover Effect */
+button.btn-warning {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.btn-warning:hover {
+  background-color: #ffcc33;
+  transform: scale(1.1);
+}
+
+
+/* Card Body Alignment */
+.card-body {
+  text-align: center;
+  margin-top: 40px; /* Add spacing below the image */
+}
+.card-title{
+  padding-top: 30px;
+}
+/* General card styling */
+.review-card {
+  border-radius: 0px; /* Rounder corners */
+  overflow: hidden; /* Ensure no content spills outside */
+  padding-top: 110px; /* Space for the larger image overlap */
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover Effect on Cards */
+.review-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Image styling */
+.review-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image fills its dimensions */
+  position: absolute;
+  top: -100px; /* Moves half of the image out of the card */
+  left: 50%;
+  transform: translateX(-50%); /* Centers the image horizontally */
+  border: 4px solid white; /* Optional border for contrast */
+}
+
+/* Rating stars */
+.rating {
+  font-size: 1.2rem;
+  color: #FFD700; /* Gold for stars */
+  margin-top: 10px; /* Spacing above stars */
+}
+
+.rating span {
+  margin-right: 2px; /* Small spacing between stars */
+}
+
+/* Card body styling */
+.card-body {
+  padding-top: 30px; /* Space between the image and the content */
+}
+
+
+
+/* Footer Section */
+.footer {
+  background-color: #000;
+  color: #fff;
+  padding: 2rem;
+}
+
+.footer h3,
+.footer h5,
+.footer h6 {
+  color: #fff;
+}
+
+.footer p,
+.footer ul li a {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s ease; /* Smooth transition for links */
+}
+
+/* Hover effect for links */
+.footer ul li a:hover {
+  color: #ffd700; /* Gold color on hover */
+}
+
+/* Social Media Icons */
+.footer .social-icons a {
+  font-size: 20px;
+  color: #bbb; /* Default color for social media icons */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and scale */
+  text-decoration: none;
+  margin-right: 15px; /* Space between icons */
+}
+
+.footer .social-icons a:hover {
+  color: #ffd700; /* Gold color on hover */
+  transform: scale(1.2); /* Slightly enlarge the icons */
+}
+
+/* Font Awesome Icon Sizes */
+.footer .social-icons i {
+  font-size: 20px; /* Set the size of the icons */
+}
+
+/* Button styles */
+.footer .btn-warning {
+  background-color: #ffd700;
+  border: none;
+  color: #000;
+  transition: background-color 0.3s ease;
+}
+
+.footer .btn-warning:hover {
+  background-color: #ffcc33;
+}
+
+.footer .btn-outline-warning {
+  border: 1px solid #ffd700;
+  color: #ffd700;
+  transition: all 0.3s ease;
+}
+
+.footer .btn-outline-warning:hover {
+  background-color: #ffd700;
+  color: #000;
+}
+
+/* Ensure the layout is centered and properly spaced */
+.footer .row {
+  display: flex;
+  justify-content: center;
+  gap: 3rem; /* Add gap between columns */
+}
+
+.footer .col-md-3 {
+  flex: 1;
+  text-align: center;
+}
+
+.footer .col-md-4 {
+  flex: 2;
+  text-align: center;
+}
+
+/* Optional: Style the map iframe */
+footer iframe {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

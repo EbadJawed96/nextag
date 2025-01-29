@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/aboutstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>About Us - NEX TAG</title>
+</head>
+<body>
+<!-- Sticky Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <!-- Brand and Search Row -->
+      <a class="navbar-brand fw-bold" id="hdd" href="index.html">
+        <span class="text-white">NEX</span><span class="text-warning">TAG</span>
+      </a>
+  
+      <!-- Like and Cart Icons -->
+      <div class="d-flex align-items-center">
+        <!-- Like Icon -->
+        <i class="fas fa-heart like-button"></i>
+        <!-- Cart Icon -->
+        <div class="cart">
+          <a href="cart.html" class="text-decoration-none text-white">
+            <span class="cart-icon">
+              🛒
+              <span class="cart-count">0</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+    <!-- Nav Links Section -->
+    <div class="nav-links">
+        <div class="container">
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index0.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+    <!-- Section 1: About Us -->
+    <section class="about-section">
+        <div class="section-content">
+            <h2>About Us</h2>
+            <p>NEX TAG is your go-to destination for premium wallets and purses. Combining style, functionality, and quality, our products are designed to complement your everyday needs and elevate your fashion statement.</p>
+            <div id="about" class="more-content">
+                <p>Founded on a passion for luxury and craftsmanship, we aim to bring high-end accessories to a wide audience. Our design philosophy is simple: create products that not only look good but feel amazing to use every day.</p>
+            </div>
+            <button id="btn-about" class="btn btn-warning" onclick="toggleContent('about')">Read More</button>
+        </div>
+        <div class="section-image">
+            <img src="images/about-img/1.png" alt="About Us Image">
+        </div>
+    </section>
+
+    <!-- Section 2: Our History -->
+    <section class="about-section">
+        <div class="section-image">
+            <img src="images/about-img/2.webp" alt="Our History Image">
+        </div>
+        <div class="section-content">
+            <h2>Our History</h2>
+            <p>Founded in 2020, NEX TAG started with a passion for creating high-quality accessories. Over the years, we have evolved to become a leading name in the wallet and purse industry, trusted by thousands of customers worldwide.</p>
+            <div id="history" class="more-content">
+                <p>Our journey began with a simple goal: to provide premium wallets and purses at accessible prices. Since our foundation, we have gained recognition for our commitment to quality and style, working with skilled artisans to create products that truly stand out.</p>
+            </div>
+            <button id="btn-history" class="btn btn-warning" onclick="toggleContent('history')">Read More</button>
+        </div>
+    </section>
+
+    <!-- Section 3: Our Values -->
+    <section class="about-section">
+        <div class="section-content">
+            <h2>Our Values</h2>
+            <p>Craftsmanship, innovation, and customer satisfaction are at the heart of everything we do. We are committed to providing timeless designs that stand the test of time.</p>
+            <div id="values" class="more-content">
+                <p>We believe that quality craftsmanship is an art, and innovation is key to staying ahead. Customer satisfaction drives us to constantly improve, ensuring that every NEX TAG product exceeds expectations and becomes a cherished accessory for years to come.</p>
+            </div>
+            <button id="btn-values" class="btn btn-warning" onclick="toggleContent('values')">Read More</button>
+        </div>
+        <div class="section-image">
+            <img src="images/about-img/3.jpg" alt="Our Values Image">
+        </div>
+    </section>
+
+    <!-- Section 4: Milestones -->
+    <section class="about-section">
+        <div class="section-image">
+            <img src="images/about-img/4.jpg" alt="Milestones Image">
+        </div>
+        <div class="section-content">
+            <h3>Milestones</h3>
+            <ul>
+                <li>2020: NEX TAG was founded with a vision to redefine accessories.</li>
+                <li>2021: Introduced our first collection of handcrafted wallets and purses.</li>
+                <li>2023: Reached 100,000 satisfied customers globally.</li>
+            </ul>
+            <div id="milestones" class="more-content">
+                <p>Our milestones represent the hard work and dedication of our team. From our humble beginnings to becoming an international brand, every achievement is a testament to the trust our customers place in us.</p>
+            </div>
+            <button id="btn-milestones" class="btn btn-warning" onclick="toggleContent('milestones')">Read More</button>
+        </div>
+    </section>
+      <!-- Live Chat Button -->
+<div id="live-chat-button">
+    <button onclick="openChat()">Chat with us</button>
+</div>
+
+<!-- Live Chat Button -->
+<div id="live-chat-button">
+    <button onclick="openChat()">Chat with us</button>
+</div>
+
+<!-- Chat Window -->
+<div id="chat-window" class="chat-window">
+    <div id="chat-header" class="chat-header">
+        <h5>Live Chat</h5>
+        <button onclick="closeChat()">X</button>
+    </div>
+    <div id="chat-box" class="chat-box"></div>
+    <div id="dropdown-container" class="dropdown-container">
+        <select id="question-dropdown" class="question-dropdown" onchange="dropdownSelection()">
+            <option value="">Select a question...</option>
+            <option value="hello">Hello</option>
+            <option value="how are you?">How are you?</option>
+            <option value="what is nextag?">What is Nextag?</option>
+            <option value="thanks">Thanks</option>
+            <option value="bye">Bye</option>
+        </select>
+    </div>
+    <input type="text" id="user-input" class="chat-input" placeholder="Ask a question..." onkeypress="handleKeyPress(event)">
+    <button onclick="sendMessage()" class="send-btn">Send</button>
+</div>
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <h3 class="fw-bold">Subscribe for the Daily Updates</h3>
+                <p class="text-muted">Stay updated with the latest offers, product launches, and more.</p>
+                <form id="subscribeForm" class="d-flex justify-content-center">
+                    <input type="email" id="emailInput" placeholder="Enter your email" class="form-control w-50 me-2">
+                    <button type="submit" class="btn btn-warning">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div id="notification" class="alert alert-success text-center d-none" role="alert">
+            Thank you for subscribing! 🎉 Stay tuned for the latest updates and offers.
+        </div>
+    </div>
+    
+        <div class="row text-center text-md-start justify-content-center">
+            <!-- Map Section (Start) -->
+            <div class="col-md-3 mb-4">
+                <h5 class="fw-bold">Nextag</h5>
+                <p class="text-muted small">We seamlessly connect you with premium purses, wallets, and accessories.</p>
+                <!-- Mini Map Section -->
+                <iframe src="https://www.google.com/maps/embed?pb=your_map_link" width="100%" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            </div>
+  
+             <!-- Quick Links Section (Centered) -->
+          <div class="col-md-4 mb-4">
+            <div class="row">
+                <div class="col-md-6" id="quicklinks">
+                    <h6 class="fw-bold">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="index.html" class="text-white">Index</a></li>
+                        <li><a href="about.html" class="text-white">About</a></li>
+                        <li><a href="contact.html" class="text-white">Contact</a></li>
+                        <li><a href="services.html" class="text-white">Services</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6" id="quicklinks">
+                    <h6 class="fw-bold">Platform</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="blog.html" class="text-white">Blogs</a></li>
+                        <li><a href="educat.html" class="text-white">Educational</a></li>
+                        <li><a href="sales.html" class="text-white">Sales</a></li>
+                        <li><a href="business.html" class="text-white">Buisness</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+            <!-- Contact Section (End) -->
+            <div class="col-md-3 mb-4">
+                <h6 class="fw-bold">Contact Us</h6>
+                <a href="contact.html" class="btn btn-outline-warning w-100" target="_blank" rel="noopener noreferrer">
+                    Get in touch
+                  </a>
+                <!-- Additional Contact Details -->
+                <div class="mt-3 text-muted small">
+                    <p>Call Us: +123 456 7890</p>
+                    <p>Email: support@nextag.com</p>
+                    <p>Address: 123 Fashion St., New York, NY</p>
+                </div>
+                <!-- Social Media Icons -->
+                <div class="social-icons mt-3">
+                    <a href="https://www.facebook.com/yourpage" class="text-white me-3" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.twitter.com/yourprofile" class="text-white me-3" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/yourprofile" class="text-white me-3" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/yourprofile" class="text-white me-3" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                
+            </div>
+        </div>
+        <hr class="bg-warning">
+        <div class="row">
+            <div class="col text-center">
+                <p class="small mb-0">&copy; 2025 Nextag | All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+  </footer>
+  
+
+    <script>
+      function toggleContent(id) {
+    const content = document.getElementById(id);
+    const button = document.getElementById('btn-' + id);
+
+    if (content) {
+        if (content.style.display === "block") {
+            content.style.display = "none";
+            button.innerHTML = "Read More";
+        } else {
+            content.style.display = "block";
+            button.innerHTML = "Read Less";
+        }
+    }
+}
+
+        let chatOpen = false;
+
+// Open Chat Function
+function openChat() {
+    document.getElementById("chat-window").style.display = "flex";
+    chatOpen = true;
+    setTimeout(() => {
+        botMessage("Hi! I'm your assistant. How can I help you today?");
+    }, 500);
+}
+
+// Close Chat Function
+function closeChat() {
+    document.getElementById("chat-window").style.display = "none";
+    chatOpen = false;
+}
+
+// Handle Enter Key Press in Input Box
+function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+}
+
+// Send Message
+function sendMessage() {
+    const userInput = document.getElementById("user-input").value.trim();
+    if (userInput !== "") {
+        userMessage(userInput);
+        setTimeout(() => {
+            botMessage(getBotResponse(userInput));
+        }, 1000);
+    }
+    document.getElementById("user-input").value = ""; // Clear input
+}
+
+// Display User's Message
+function userMessage(message) {
+    const chatBox = document.getElementById("chat-box");
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("user-message");
+    messageDiv.textContent = message;
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+}
+
+// Display Bot's Message
+function botMessage(message) {
+    const chatBox = document.getElementById("chat-box");
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("bot-message");
+    messageDiv.textContent = message;
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+}
+
+// Handle Dropdown Selection
+function dropdownSelection() {
+    const selectedQuestion = document.getElementById("question-dropdown").value;
+    if (selectedQuestion) {
+        userMessage(selectedQuestion);
+        setTimeout(() => {
+            botMessage(getBotResponse(selectedQuestion));
+        }, 1000);
+    }
+}
+
+// Predefined Bot Responses - Simulating AI Responses
+function getBotResponse(input) {
+    const responses = {
+        "hello": "Hi there! How can I assist you today?",
+        "how are you?": "I'm doing well, thank you for asking! How about you?",
+        "what is nextag?": "Nextag is an online store offering premium purses, wallets, and accessories to make your fashion more convenient.",
+        "thanks": "You're welcome! I'm here to help anytime.",
+        "bye": "Goodbye! I hope to chat again soon.",
+        "tell me a joke": "Why don't skeletons fight each other? They don't have the guts!",
+        "what are your hours?": "We're available 24/7 online, ready to serve you anytime!",
+        "who are you?": "I'm an AI-powered chatbot created to assist you with your needs. I'm always learning and improving!"
+    };
+
+    // Simulating AI-style responses
+    if (responses[input.toLowerCase()]) {
+        return responses[input.toLowerCase()];
+    } else {
+        return "Hmm, that's an interesting question. Let me think... Ah, I don't have an answer for that one yet, but I'm always improving!";
+    }
+}
+
+        
+
+    </script>
+    
+    
+
+    <footer>
+        <p>&copy; 2025 NEX TAG. All Rights Reserved.</p>
+    </footer>
+    <script>
+        // Function to add products to the cart
+        function addToCart(product) {
+          const cart = JSON.parse(localStorage.getItem('cart')) || [];
+          cart.push(product);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          updateCartCount();
+          showNotification(`${product.name} added to cart!`);
+        }
+      
+        // Function to update cart count
+        function updateCartCount() {
+          const cart = JSON.parse(localStorage.getItem('cart')) || [];
+          document.querySelector('.cart-count').textContent = cart.length;
+        }
+      
+        // Call this function on page load to ensure the cart count is accurate
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+      
+        // Function to show a notification
+        function showNotification(message) {
+          const notification = document.createElement('div');
+          notification.className = 'notification show';
+          notification.textContent = message;
+          document.body.appendChild(notification);
+      
+          // Remove the notification after 3 seconds
+          setTimeout(() => {
+            notification.classList.remove('show');
+            notification.classList.add('hidden');
+            setTimeout(() => notification.remove(), 500); // Remove after transition
+          }, 3000);
+        }
+      </script>
+      <script>
+        const likeButton = document.querySelector('.like-button');
+      
+        likeButton.addEventListener('click', function () {
+            // Toggle liked class
+            this.classList.toggle('liked');
+      
+            // Create a sparkle effect
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            const size = Math.random() * 10 + 5;
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+            sparkle.style.top = `${Math.random() * 40 - 20}px`;
+            sparkle.style.left = `${Math.random() * 40 - 20}px`;
+            likeButton.appendChild(sparkle);
+      
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 600);
+      
+            // Show bubble notification
+            if (this.classList.contains('liked')) {
+                showBubbleNotification('Thank you for liking our page!');
+            }
+        });
+      
+        function showBubbleNotification(message) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble-notification');
+            bubble.innerText = message;
+      
+            // Append bubble to the like button
+            likeButton.appendChild(bubble);
+      
+            // Remove bubble after animation
+            setTimeout(() => {
+                bubble.remove();
+            }, 2200); // Matches fade-out duration
+        }
+       
+    document.getElementById('subscribeForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent form submission
+        
+        const emailInput = document.getElementById('emailInput');
+        const notification = document.getElementById('notification');
+        
+        // Email validation
+        if (!emailInput.value.trim()) {
+            emailInput.classList.add('is-invalid');
+            alert('Email is required!');
+            return;
+        }
+        
+        emailInput.classList.remove('is-invalid');
+        
+        // Show the notification
+        notification.classList.remove('d-none');
+        
+        // Optional: Hide the notification after 5 seconds
+        setTimeout(() => {
+            notification.classList.add('d-none');
+        }, 5000);
+        
+        // Reset the form
+        emailInput.value = '';
+    });
+
+
+      </script>  
+</body>
+</html>

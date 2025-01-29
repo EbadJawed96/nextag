@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Shopping Cart - NEXTAG</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Basic styles for cart and product pages */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: #f1f1f1;
+        }
+
+/* Navbar Styles */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease;
+  color: #fff;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.1);
+}
+/* Header Text Colors */
+#hdd {
+  color: #fff;
+}
+
+.span {
+  color: #ffcc33;
+}
+/* LIKE-ICON */
+.like-button {
+  position: relative;
+  font-size: 25px;
+  padding-right: 8px;
+  color: #ccc;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.like-button.liked {
+  color: #ff4757;
+  transform: scale(1.2);
+}
+
+/* Sparkle Animation */
+.sparkle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ffdd59;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkle-animation 0.6s ease forwards;
+}
+
+@keyframes sparkle-animation {
+  0% {
+      transform: scale(0.5);
+      opacity: 1;
+  }
+  50% {
+      transform: scale(1.5);
+      opacity: 1;
+  }
+  100% {
+      transform: scale(0);
+      opacity: 0;
+  }
+}
+
+/* Bubble Notification Styles */
+.bubble-notification {
+  position: absolute;
+  top: 60px; /* Adjust this value to position the bubble below the button */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff4757;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: bubble-down 0.6s ease forwards, fade-out 1.6s ease forwards 1.6s;
+}
+
+@keyframes bubble-down {
+  0% {
+      opacity: 0;
+      transform: translate(-50%, -20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+/* CART */
+.cart {
+  position: relative;
+}
+
+.cart-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+}
+
+/* Notification Styles */
+.notification {
+  position: fixed;
+  top: 10%;
+  right: 10px;
+  background: #28a745;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease-in-out;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+        /* Styles for cart */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+/* Quantity Control Styles */
+.quantity-control {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-control button {
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.quantity-control button:hover {
+    background-color: #ffcc00;
+}
+
+.quantity-control span {
+    font-size: 16px;
+    color: white;
+}
+
+
+        .remove-btn {
+            background-color: #f44336;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            background-color: #e53935;
+        }
+
+        .cart-items {
+            padding: 20px;
+        }
+
+        /* Update cart button */
+        .update-cart-btn {
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .update-cart-btn:hover {
+            background-color: #ffcc00;
+        }
+        .cart-items {
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ffcc00;
+        }
+    /* Style for the close button (cross icon) */
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+        cursor: pointer;
+        color: #000;
+    }
+
+    .close-btn:hover {
+        color: red; /* Change color on hover */
+    }
+
+    /* Style for the modal */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    }
+
+    .modal-content {
+        position: relative;
+        background-color: white;
+        padding: 20px;
+        margin: 15% auto;
+        width: 40%;
+        border-radius: 8px;
+    }
+        input, textarea {
+            background-color: #222;
+            color: #f1f1f1;
+            border: 1px solid #555;
+            padding: 8px;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        input:focus, textarea:focus {
+            border: 1px solid #ffcc00;
+            outline: none;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #333;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+            color: #f1f1f1;
+        }
+
+        .remove-btn {
+            background-color: #f44336;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            background-color: #e53935;
+        }
+
+        /* Off-Canvas */
+        .off-canvas {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            animation: fadeIn 1s;
+        }
+
+        .rating span {
+            font-size: 24px;
+            cursor: pointer;
+            color: gold;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Sticky Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <!-- Brand and Search Row -->
+      <a class="navbar-brand fw-bold" id="hdd" href="index.html">
+        <span class="text-white">NEX</span><span class="text-warning">TAG</span>
+      </a>
+  
+      <!-- Like and Cart Icons -->
+      <div class="d-flex align-items-center">
+        <!-- Like Icon -->
+        <i class="fas fa-heart like-button"></i>
+        <!-- Cart Icon -->
+        <div class="cart">
+          <a href="cart.html" class="text-decoration-none text-white">
+            <span class="cart-icon">
+              🛒
+              <span class="cart-count">0</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main>
+<!-- Cart Items Section -->
+<section class="cart-items">
+    <h2>Your Cart</h2>
+    <div id="cart-container"></div>
+    <button id="empty-cart" class="btn btn-danger">Empty Cart</button>
+    <button id="proceed-to-checkout">Proceed to Checkout</button>
+    <button onclick="window.location.href='diorprd.html';">Browse More Products</button>
+
+</section>
+</main>
+<!-- Modal 1: Sign In -->
+<div id="modal-signin" class="modal">
+    <div class="modal-content">
+        <!-- Close Button (Cross Icon) -->
+        <span id="close-modal-signin" class="close-btn">&times;</span>
+        
+        <h3>Sign In</h3>
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button id="signin-next">Next</button>
+    </div>
+</div>
+
+    <!-- Modal 2: Enter Details -->
+    <div id="modal-details" class="modal">
+        <div class="modal-content">
+            <h3>Enter Your Details</h3>
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" placeholder="Enter your first name" required>
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" placeholder="Enter your last name" required>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+            <label for="address">Address:</label>
+            <textarea id="address" placeholder="Enter your address" required></textarea>
+            <button id="details-next">Next</button>
+        </div>
+    </div>
+
+    <!-- Modal 3: Payment Methods -->
+    <div id="modal-payment" class="modal">
+        <div class="modal-content">
+            <h3>Payment Methods</h3>
+            <label>
+                <input type="radio" name="payment-method" value="Cash on Delivery"> Cash on Delivery
+            </label>
+            <label>
+                <input type="radio" name="payment-method" value="Online Payment"> Online Payment
+            </label>
+            <button id="confirm-payment">Confirm Payment</button>
+        </div>
+    </div>
+
+    <!-- Off-Canvas Notification -->
+    <div id="off-canvas" class="off-canvas">
+        <h3>Thank You!</h3>
+        <p>Your order has been placed successfully.</p>
+        <p>We appreciate your feedback. Please rate your experience:</p>
+        <div class="rating">
+            <span data-rating="5">★</span>
+            <span data-rating="4">★</span>
+            <span data-rating="3">★</span>
+            <span data-rating="2">★</span>
+            <span data-rating="1">★</span>
+        </div>
+    </div>
+
+    <script>
+        // Function to update the cart display
+        function updateCart() {
+            const cartContainer = document.getElementById('cart-container');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cartContainer.innerHTML = '';  // Clear previous content
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+                document.getElementById('proceed-to-checkout').disabled = true;
+                return;
+            }
+
+            let totalPrice = 0;
+
+            cart.forEach((item, index) => {
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('cart-item');
+
+                const productName = document.createElement('p');
+                productName.textContent = item.name;
+                const productPrice = document.createElement('p');
+                productPrice.textContent = `$${item.price.toFixed(2)}`;
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = 'Remove';
+                removeBtn.classList.add('remove-btn');
+                removeBtn.addEventListener('click', () => removeFromCart(index));
+
+                productDiv.appendChild(productName);
+                productDiv.appendChild(productPrice);
+                productDiv.appendChild(removeBtn);
+                cartContainer.appendChild(productDiv);
+
+                totalPrice += item.price;
+            });
+
+            // Display the total price
+            const totalPriceElement = document.createElement('p');
+            totalPriceElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+            cartContainer.appendChild(totalPriceElement);
+
+            document.getElementById('proceed-to-checkout').disabled = false;
+        }
+
+        // Function to add item to the cart
+        function addToCart(product) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart(); // Refresh cart display
+        }
+
+        // Function to remove an item from the cart
+        function removeFromCart(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1); // Remove item at the specified index
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart(); // Refresh cart display
+        }
+
+        // Initialize the cart display
+        updateCart();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const proceedToCheckout = document.getElementById('proceed-to-checkout');
+            const modalSignin = document.getElementById('modal-signin');
+            const modalDetails = document.getElementById('modal-details');
+            const modalPayment = document.getElementById('modal-payment');
+            const offCanvas = document.getElementById('off-canvas');
+
+            // Show Sign-In Modal
+            proceedToCheckout.addEventListener('click', () => {
+                modalSignin.style.display = 'flex';
+            });
+
+            // Go to Details Modal
+            document.getElementById('signin-next').addEventListener('click', () => {
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                if (!email || !password) {
+                    alert("Please fill in all fields.");
+                    return;
+                }
+
+                modalSignin.style.display = 'none';
+                modalDetails.style.display = 'flex';
+            });
+
+            // Go to Payment Modal
+            document.getElementById('details-next').addEventListener('click', () => {
+                const firstName = document.getElementById('first-name').value;
+                const lastName = document.getElementById('last-name').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+
+                const phonePattern = /^[0-9]{10}$/;
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+                if (!firstName || !lastName || !phone || !address || !phonePattern.test(phone)) {
+                    alert("Please fill in all fields correctly.");
+                    return;
+                }
+
+                modalDetails.style.display = 'none';
+                modalPayment.style.display = 'flex';
+            });
+
+            // Confirm Payment
+            document.getElementById('confirm-payment').addEventListener('click', () => {
+                modalPayment.style.display = 'none';
+                offCanvas.style.display = 'block';
+
+                setTimeout(() => {
+                    offCanvas.style.display = 'none';
+                }, 2000); // Hide off-canvas after 2 seconds
+            });
+
+            // Rating System
+            document.querySelectorAll('.rating span').forEach(star => {
+                star.addEventListener('click', () => {
+                    const rating = star.getAttribute('data-rating');
+                    alert(`Thank you for rating us ${rating} stars!`);
+                });
+            });
+        });
+    </script>
+    <script>
+        const likeButton = document.querySelector('.like-button');
+      
+        likeButton.addEventListener('click', function () {
+            // Toggle liked class
+            this.classList.toggle('liked');
+      
+            // Create a sparkle effect
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            const size = Math.random() * 10 + 5;
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+            sparkle.style.top = `${Math.random() * 40 - 20}px`;
+            sparkle.style.left = `${Math.random() * 40 - 20}px`;
+            likeButton.appendChild(sparkle);
+      
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 600);
+      
+            // Show bubble notification
+            if (this.classList.contains('liked')) {
+                showBubbleNotification('Thank you for liking our page!');
+            }
+        });
+      
+        function showBubbleNotification(message) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble-notification');
+            bubble.innerText = message;
+      
+            // Append bubble to the like button
+            likeButton.appendChild(bubble);
+      
+            // Remove bubble after animation
+            setTimeout(() => {
+                bubble.remove();
+            }, 2200); // Matches fade-out duration
+        }
+      </script>   
+
+    <script>
+// Function to update the cart display
+function updateCart() {
+    const cartContainer = document.getElementById('cart-container');
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cartContainer.innerHTML = '';  // Clear previous content
+
+    if (cart.length === 0) {
+        cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+        document.getElementById('proceed-to-checkout').disabled = true;
+        return;
+    }
+
+    let totalPrice = 0;
+
+    cart.forEach((item, index) => {
+        const productDiv = document.createElement('div');
+        productDiv.classList.add('cart-item');
+
+        const productName = document.createElement('p');
+        productName.textContent = item.name;
+
+        const productPrice = document.createElement('p');
+        productPrice.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
+
+        // Quantity controls
+        const quantityControl = document.createElement('div');
+        quantityControl.classList.add('quantity-control');
+        
+        const decreaseBtn = document.createElement('button');
+        decreaseBtn.textContent = '-';
+        decreaseBtn.addEventListener('click', () => adjustQuantity(index, -1));
+
+        const quantityDisplay = document.createElement('span');
+        quantityDisplay.textContent = item.quantity;
+
+        const increaseBtn = document.createElement('button');
+        increaseBtn.textContent = '+';
+        increaseBtn.addEventListener('click', () => adjustQuantity(index, 1));
+
+        quantityControl.appendChild(decreaseBtn);
+        quantityControl.appendChild(quantityDisplay);
+        quantityControl.appendChild(increaseBtn);
+
+        // Remove button
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove';
+        removeBtn.classList.add('remove-btn');
+        removeBtn.addEventListener('click', () => removeFromCart(index));
+
+        productDiv.appendChild(productName);
+        productDiv.appendChild(productPrice);
+        productDiv.appendChild(quantityControl);
+        productDiv.appendChild(removeBtn);
+        cartContainer.appendChild(productDiv);
+
+        totalPrice += item.price * item.quantity;
+    });
+
+    // Display the total price
+    const totalPriceElement = document.createElement('p');
+    totalPriceElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+    cartContainer.appendChild(totalPriceElement);
+
+    document.getElementById('proceed-to-checkout').disabled = false;
+}
+
+// Function to empty the entire cart
+function emptyCart() {
+    localStorage.removeItem('cart');  // Remove the cart from localStorage
+    updateCart();  // Refresh the cart display
+}
+
+// Add event listener for empty cart button
+document.getElementById('empty-cart').addEventListener('click', emptyCart);
+
+// Function to add item to the cart
+function addToCart(product) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingProductIndex = cart.findIndex(item => item.name === product.name);
+
+    if (existingProductIndex > -1) {
+        // Update quantity of the existing product
+        cart[existingProductIndex].quantity += 1;
+    } else {
+        // Add new product with quantity 1
+        product.quantity = 1;
+        cart.push(product);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart(); // Refresh cart display
+}
+
+// Function to adjust the quantity of a product
+function adjustQuantity(index, change) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const product = cart[index];
+
+    if (product.quantity + change > 0) {
+        product.quantity += change;
+    } else {
+        product.quantity = 1;  // Keep minimum quantity as 1
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart(); // Refresh cart display
+}
+
+// Function to remove an item from the cart
+function removeFromCart(index) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1); // Remove item at the specified index
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart(); // Refresh cart display
+}
+
+// Initialize the cart display
+updateCart();
+
+// Event listeners and other code for handling modals and checkout...
+
+
+    </script>
+    <script>
+        // Get the modal and close button
+        const modal = document.getElementById('modal-signin');
+        const closeBtn = document.getElementById('close-modal-signin');
+    
+        // Close the modal when the cross icon is clicked
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    
+        // Optional: Open the modal for demonstration
+        // You can replace this with your actual modal trigger event
+        // modal.style.display = 'block'; // Uncomment to open the modal initially
+    </script>
+</body>
+</html>
